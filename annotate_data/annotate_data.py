@@ -21,31 +21,26 @@ def draw_bounding_box(image_path, label_path):
         for line in f:
             # Assume labels are in the format: x_min, y_min, x_max, y_max
             parts = line.strip().split(' ')
-            
+      
             cl, x, y, w, h = map(float, parts[:5])
+           
 
-            # Convert normalized coordinates to pixel coordinates
-            x *= image_width
-            y *= image_height
-            w *= image_width
-            h *= image_height
+            #Convert normalized coordinates to pixel coordinates
+            x_center = x * image_width
+            y_center = y * image_height
+            box_width = w * image_width
+            box_height = h * image_height
 
-            # print (x, y)
-            # print (w, h)
-            # x_min = x
-            # y_min = y
-            # x_max = x + w
-            # y_max = y + h
             # Calculate the top-left corner of the bounding box
-            x_min = (x - w) / 2
-            y_min = (y - h) / 2
-            
+            x_min = x_center - (box_width / 2)
+            y_min = y_center - (box_height / 2)
+
             # Calculate the bottom-right corner of the bounding box
-            x_max = (x + w) / 2
-            y_max = (y + h) / 2
+            x_max = x_center + (box_width / 2)
+            y_max = y_center + (box_height / 2)
             
             # Calculate text size and position
-            bbox = draw.textbbox((x_min, y_min - 30), "bullet_holes", font=font)
+            bbox = draw.textbbox((x_min, y_min - 30), "bullet_hole", font=font)
             text_width = bbox[2] - bbox[0]
             text_height = bbox[3] - bbox[1]
             text_x = x_min
@@ -53,9 +48,10 @@ def draw_bounding_box(image_path, label_path):
             text_y = max(0, text_y) 
 
             # Draw the bounding box
-            draw.rectangle([x_min, y_min, x_max, y_max], outline="red", width=5)
+            draw.rectangle([x_min, y_min, x_max, y_max], outline="blue", width=5)
 
             # # Put the label text above the bounding box
             draw.text((text_x, text_y), "bullet_hole", fill="white", font=font)
 
+    
     return image

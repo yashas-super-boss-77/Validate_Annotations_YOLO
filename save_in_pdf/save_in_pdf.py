@@ -7,21 +7,22 @@ def read_config(config_path):
         data_dict = json.load(file)
     return data_dict
 
-# Create a PDF object
-pdf = FPDF(orientation='P', unit='mm', format='A4')
-
-config_file_path = "/home/kingkong/projects/annotations_to_pdf/configs/save_in_pdf.json"
-config_file = read_config(config_file_path)
-
-
-
 def save_pdf(processed_image_list):
+
+    # Create a PDF object
+    pdf = FPDF(orientation='P', unit='mm', format='A4')
+
+    config_file_path = "/home/kingkong/projects/annotations_to_pdf/configs/save_in_pdf.json"
+    config_file = read_config(config_file_path)
+
     output_pdf = config_file["path"]
-    
-    def add_to_pdf(processed_image):
+
+    index = 0
+    for processed_image in processed_image_list:
         
+        index += 1
         # Save the processed image temporarily
-        temp_image_path = 'temp_image.jpg'
+        temp_image_path = f"temp_image_{index}.jpg"
         processed_image.save(temp_image_path)
 
         # Add the image to the PDF
@@ -31,8 +32,7 @@ def save_pdf(processed_image_list):
         # Optionally, delete the temporary image file
         os.remove(temp_image_path)
     
-    for processed_image in processed_image_list:
-        add_to_pdf(processed_image)
+    print (pdf)
 
     # Save the PDF
     pdf.output(output_pdf)

@@ -9,6 +9,7 @@ images_path, images_list, labels_path, labels_list = read_input.read_data()
 print ("Read input paths")
 
 processed_image_list = []
+
 for i in tqdm(range(len(images_list))):
 
     # annotate the data

@@ -1,6 +1,6 @@
 # Annotations to pdf converter
 
-This converts the annotations done in any software into pdf so that it can be 
+This converts the annotations (YOLO) done in any software into pdf so that it can be helpful for anyone who wish to validate the annotations
 
 ## Installation
 
@@ -15,6 +15,9 @@ pip install tqdm
 ## Usage
 
 ```
+Add the paths to input and output directory in these config files,
+1. configs/config_read_input.json
+2. configs/save_in_pdf.json
 
 ```
 
