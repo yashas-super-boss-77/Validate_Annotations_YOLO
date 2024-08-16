@@ -1,6 +1,6 @@
-# Annotations to pdf converter
+# Annotations Validator (YOLO)
 
-This converts the annotations (YOLO) done in any software into pdf so that it can be helpful for anyone who wish to validate the annotations
+This converts the annotations (YOLO) into pdf so that it can be helpful for anyone who wish to validate the annotations. It will take the images and labels as input directory and produce a pdf with annotations market. This will help the validator to just go through the pdf and validate the annotations. Otherwise who will go install the annotator in their systems and run the code, solve the dependencies and then load the image dir and then labels dir, all hectic. This code written by me (and chatgpt) will avoid all that hasle.
 
 ## Installation
 
